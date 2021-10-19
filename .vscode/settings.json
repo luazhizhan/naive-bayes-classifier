@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "constant.h": "c",
+        "global.h": "c",
+        "helper.h": "c",
+        "math.h": "c,"
+    }
+}
