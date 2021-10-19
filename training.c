@@ -28,6 +28,7 @@ void training(const int trainingStartRow, const int trainingEndRow)
     normalPriorProb = noOfNormalData / totalNumOfData;
     alteredPriorProb = noOfAlteredData / totalNumOfData;
 
+    // Train with 9 different features
     trainSeason(trainingStartRow, trainingEndRow);
     trainAge(trainingStartRow, trainingEndRow);
     trainChildishDisease(trainingStartRow, trainingEndRow);

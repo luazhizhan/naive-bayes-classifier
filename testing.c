@@ -25,6 +25,7 @@ void testing(const int testingStartRow, const int testingEndRow)
               result = data[i][RESULT_COLUMN];
 
         // Calculate probability of Y = Normal OR Y = Altered
+        // with 9 different features
         testSeason(seasonValue, &normalResult, &alteredResult);
         testAge(ageValue, &normalResult, &alteredResult);
         testChildishDisease(childDisease, &normalResult, &alteredResult);
