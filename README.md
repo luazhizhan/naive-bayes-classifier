@@ -11,7 +11,7 @@
 ## Git Config
 
 Execute `git config --global core.autocrlf false` command on your terminal to set `autocrlf = false`.
-Learn more about it [here](https://stackoverflow.com/a/2354278).
+Learn more about it [here](https://stackoverflow.com/a/2825829).
 
 ## References
 
