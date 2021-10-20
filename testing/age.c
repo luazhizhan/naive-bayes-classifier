@@ -2,6 +2,6 @@ extern float normalAgeMean, alteredAgeMean, normalAgeVariance, alteredAgeVarianc
 
 void testAge(float ageValue, float *normalResult, float *alteredResult)
 {
-    *normalResult *= gaussianDistrbution(ageValue, normalAgeVariance, normalAgeMean);
-    *alteredResult *= gaussianDistrbution(ageValue, alteredAgeVariance, alteredAgeMean);
+    *normalResult *= gaussianDistribution(ageValue, normalAgeVariance, normalAgeMean);
+    *alteredResult *= gaussianDistribution(ageValue, alteredAgeVariance, alteredAgeMean);
 }
