@@ -1,8 +1,5 @@
-extern float data[100][10];
-extern float noOfNormalData, noOfAlteredData;
-extern float haveSurgeryNormal, noSurgeryNormal, haveSurgeryAltered, noSurgeryAltered;
-
-void trainSurgery(const int trainingStartRow, const int trainingEndRow)
+surgery trainSurgery(float **data, metadata meta,
+                     const int trainingStartRow, const int trainingEndRow)
 {
     float noOfHaveSurgeryNormal = ALPHA, noOfNoSurgeryNormal = ALPHA,
           noOfHaveSurgeryAltered = ALPHA, noOfNoSurgeryAltered = ALPHA;
@@ -28,13 +25,15 @@ void trainSurgery(const int trainingStartRow, const int trainingEndRow)
     }
     // Add 2 as there are 2 different answers (yes,no) for normal and altered data
     // due to ALPHA being set to 1
-    float noOfNormalDataAlpha = noOfNormalData + 2;
-    float noOfAlteredDataAlpha = noOfAlteredData + 2;
+    float noOfNormalDataAlpha = meta.numOfNormalData + 2;
+    float noOfAlteredDataAlpha = meta.numOfAlteredData + 2;
 
-    haveSurgeryNormal = noOfHaveSurgeryNormal / noOfNormalDataAlpha;
-    noSurgeryNormal = noOfNoSurgeryNormal / noOfNormalDataAlpha;
-    haveSurgeryAltered = noOfHaveSurgeryAltered / noOfAlteredDataAlpha;
-    noSurgeryAltered = noOfNoSurgeryAltered / noOfAlteredDataAlpha;
-    // printf("5. Surgical Intervention : %f %f %f %f\n", haveSurgeryNormal, noSurgeryNormal,
-    //        haveSurgeryAltered, noSurgeryAltered);
+    float haveSurgeryNormal = noOfHaveSurgeryNormal / noOfNormalDataAlpha;
+    float noSurgeryNormal = noOfNoSurgeryNormal / noOfNormalDataAlpha;
+    float haveSurgeryAltered = noOfHaveSurgeryAltered / noOfAlteredDataAlpha;
+    float noSurgeryAltered = noOfNoSurgeryAltered / noOfAlteredDataAlpha;
+
+    surgery result = {haveSurgeryNormal, noSurgeryNormal,
+                      haveSurgeryAltered, noSurgeryAltered};
+    return result;
 }

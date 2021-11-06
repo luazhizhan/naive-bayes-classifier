@@ -1,9 +1,5 @@
-extern float data[100][10];
-extern float noOfNormalData, noOfAlteredData;
-extern float haveChildDiseaseNormal, noChildDiseaseNormal, haveChildDiseaseAltered,
-    noChildDiseaseAltered;
-
-void trainChildishDisease(const int trainingStartRow, const int trainingEndRow)
+disease trainChildishDisease(float **data, metadata meta,
+                             const int trainingStartRow, const int trainingEndRow)
 {
     float noOfHaveChildDiseaseNormal = ALPHA, noOfNoChildDiseaseNormal = ALPHA,
           noOfHaveChildDiseaseAltered = ALPHA, noOfNoChildDiseaseAltered = ALPHA;
@@ -28,14 +24,17 @@ void trainChildishDisease(const int trainingStartRow, const int trainingEndRow)
     }
     // Add 2 as there are 2 different answers (yes,no) for normal and altered data
     // due to ALPHA being set to 1
-    float noOfNormalDataAlpha = noOfNormalData + 2;
-    float noOfAlteredDataAlpha = noOfAlteredData + 2;
+    float noOfNormalDataAlpha = meta.numOfNormalData + 2;
+    float noOfAlteredDataAlpha = meta.numOfAlteredData + 2;
 
-    haveChildDiseaseNormal = noOfHaveChildDiseaseNormal / noOfNormalDataAlpha;
-    noChildDiseaseNormal = noOfNoChildDiseaseNormal / noOfNormalDataAlpha;
-    haveChildDiseaseAltered = noOfHaveChildDiseaseAltered / noOfAlteredDataAlpha;
-    noChildDiseaseAltered = noOfNoChildDiseaseAltered / noOfAlteredDataAlpha;
+    float haveChildDiseaseNormal = noOfHaveChildDiseaseNormal / noOfNormalDataAlpha;
+    float noChildDiseaseNormal = noOfNoChildDiseaseNormal / noOfNormalDataAlpha;
+    float haveChildDiseaseAltered = noOfHaveChildDiseaseAltered / noOfAlteredDataAlpha;
+    float noChildDiseaseAltered = noOfNoChildDiseaseAltered / noOfAlteredDataAlpha;
 
-    // printf("3. Childish Disease : %f %f %f %f\n", haveChildDiseaseNormal, noChildDiseaseNormal,
-    //        haveChildDiseaseAltered, noChildDiseaseAltered);
+    disease result = {haveChildDiseaseNormal,
+                      noChildDiseaseNormal,
+                      haveChildDiseaseAltered,
+                      noChildDiseaseAltered};
+    return result;
 }

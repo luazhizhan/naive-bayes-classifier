@@ -1,9 +1,5 @@
-extern float data[100][10];
-extern float noOfNormalData, noOfAlteredData;
-extern float neverSmokeNormal, occasionSmokeNormal, dailySmokeNormal,
-    neverSmokeAltered, occasionSmokeAltered, dailySmokeAltered;
-
-void trainSmokingHabit(const int trainingStartRow, const int trainingEndRow)
+smoking trainSmokingHabit(float **data, metadata meta,
+                          const int trainingStartRow, const int trainingEndRow)
 {
     float noOfNeverSmokeNormal = ALPHA, noOfOccasionSmokeNormal = ALPHA,
           noOfDailySmokeNormal = ALPHA, noOfNeverSmokeAltered = ALPHA,
@@ -36,18 +32,22 @@ void trainSmokingHabit(const int trainingStartRow, const int trainingEndRow)
     }
     // Add 3 as there are 3 different value (-1,0,1) for normal
     // and altered data due to ALPHA being set to 1
-    float noOfNormalDataAlpha = noOfNormalData + 3;
-    float noOfAlteredDataAlpha = noOfAlteredData + 3;
+    float noOfNormalDataAlpha = meta.numOfNormalData + 3;
+    float noOfAlteredDataAlpha = meta.numOfAlteredData + 3;
 
-    neverSmokeNormal = noOfNeverSmokeNormal / noOfNormalDataAlpha;
-    occasionSmokeNormal = noOfOccasionSmokeNormal / noOfNormalDataAlpha;
-    dailySmokeNormal = noOfDailySmokeNormal / noOfNormalDataAlpha;
+    float neverSmokeNormal = noOfNeverSmokeNormal / noOfNormalDataAlpha;
+    float occasionSmokeNormal = noOfOccasionSmokeNormal / noOfNormalDataAlpha;
+    float dailySmokeNormal = noOfDailySmokeNormal / noOfNormalDataAlpha;
 
-    neverSmokeAltered = noOfNeverSmokeAltered / noOfAlteredDataAlpha;
-    occasionSmokeAltered = noOfOccasionSmokeAltered / noOfAlteredDataAlpha;
-    dailySmokeAltered = noOfDailySmokeAltered / noOfAlteredDataAlpha;
+    float neverSmokeAltered = noOfNeverSmokeAltered / noOfAlteredDataAlpha;
+    float occasionSmokeAltered = noOfOccasionSmokeAltered / noOfAlteredDataAlpha;
+    float dailySmokeAltered = noOfDailySmokeAltered / noOfAlteredDataAlpha;
 
-    // printf("8. Smoking Habit : %f %f %f %f %f %f\n",
-    //        neverSmokeNormal, occasionSmokeNormal, dailySmokeNormal,
-    //        neverSmokeAltered, occasionSmokeAltered, dailySmokeAltered);
+    smoking result = {neverSmokeNormal,
+                      occasionSmokeNormal,
+                      dailySmokeNormal,
+                      neverSmokeAltered,
+                      occasionSmokeAltered,
+                      dailySmokeAltered};
+    return result;
 }

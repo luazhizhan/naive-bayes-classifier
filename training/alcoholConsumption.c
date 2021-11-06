@@ -1,10 +1,5 @@
-extern float data[100][10];
-extern float noOfNormalData, noOfAlteredData;
-extern float drinkServeralADayNormal, drinkADayNormal, drinkServeralAWeekNormal,
-    drinkAWeekNormal, drinkHardlyNormal, drinkServeralADayAltered, drinkADayAltered,
-    drinkServeralAWeekAltered, drinkAWeekAltered, drinkHardlyAltered;
-
-void trainAlcoholConsumption(const int trainingStartRow, const int trainingEndRow)
+alcohol trainAlcoholConsumption(float **data, metadata meta,
+                                const int trainingStartRow, const int trainingEndRow)
 {
     float noOfDrinkServeralADayNormal = ALPHA, noDrinkADayNormal = ALPHA,
           noOfDrinkServeralAWeekNormal = ALPHA, noDrinkAWeekNormal = ALPHA,
@@ -54,25 +49,30 @@ void trainAlcoholConsumption(const int trainingStartRow, const int trainingEndRo
     }
     // Add 5 as there are 5 different value (0.2,0.4,0.6,0.8,1) for normal
     // and altered data due to ALPHA being set to 1
-    float noOfNormalDataAlpha = noOfNormalData + 5;
-    float noOfAlteredDataAlpha = noOfAlteredData + 5;
+    float noOfNormalDataAlpha = meta.numOfNormalData + 5;
+    float noOfAlteredDataAlpha = meta.numOfAlteredData + 5;
 
-    drinkServeralADayNormal = noOfDrinkServeralADayNormal / noOfNormalDataAlpha;
-    drinkADayNormal = noDrinkADayNormal / noOfNormalDataAlpha;
-    drinkServeralAWeekNormal = noOfDrinkServeralAWeekNormal / noOfNormalDataAlpha;
-    drinkAWeekNormal = noDrinkAWeekNormal / noOfNormalDataAlpha;
-    drinkHardlyNormal = noOfDrinkHardlyNormal / noOfNormalDataAlpha;
+    float drinkServeralADayNormal = noOfDrinkServeralADayNormal / noOfNormalDataAlpha;
+    float drinkADayNormal = noDrinkADayNormal / noOfNormalDataAlpha;
+    float drinkServeralAWeekNormal = noOfDrinkServeralAWeekNormal / noOfNormalDataAlpha;
+    float drinkAWeekNormal = noDrinkAWeekNormal / noOfNormalDataAlpha;
+    float drinkHardlyNormal = noOfDrinkHardlyNormal / noOfNormalDataAlpha;
 
-    drinkServeralADayAltered = noOfDrinkServeralADayAltered / noOfAlteredDataAlpha;
-    drinkADayAltered = noDrinkADayAltered / noOfAlteredDataAlpha;
-    drinkServeralAWeekAltered = noOfDrinkServeralAWeekAltered / noOfAlteredDataAlpha;
-    drinkAWeekAltered = noDrinkAWeekAltered / noOfAlteredDataAlpha;
-    drinkHardlyAltered = noOfDrinkHardlyAltered / noOfAlteredDataAlpha;
+    float drinkServeralADayAltered = noOfDrinkServeralADayAltered / noOfAlteredDataAlpha;
+    float drinkADayAltered = noDrinkADayAltered / noOfAlteredDataAlpha;
+    float drinkServeralAWeekAltered = noOfDrinkServeralAWeekAltered / noOfAlteredDataAlpha;
+    float drinkAWeekAltered = noDrinkAWeekAltered / noOfAlteredDataAlpha;
+    float drinkHardlyAltered = noOfDrinkHardlyAltered / noOfAlteredDataAlpha;
 
-    // printf("7. Frequency of alcohol consumption : %f %f %f %f %f %f %f %f %f %f\n",
-    //        drinkServeralADayNormal, drinkADayNormal,
-    //        drinkServeralAWeekNormal, drinkAWeekNormal,
-    //        drinkHardlyNormal, drinkServeralADayAltered,
-    //        drinkADayAltered, drinkServeralAWeekAltered,
-    //        drinkAWeekAltered, drinkHardlyAltered);
+    alcohol result = {drinkServeralADayNormal,
+                      drinkADayNormal,
+                      drinkServeralAWeekNormal,
+                      drinkAWeekNormal,
+                      drinkHardlyNormal,
+                      drinkServeralADayAltered,
+                      drinkADayAltered,
+                      drinkServeralAWeekAltered,
+                      drinkAWeekAltered,
+                      drinkHardlyAltered};
+    return result;
 }

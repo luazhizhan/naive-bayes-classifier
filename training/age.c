@@ -1,8 +1,5 @@
-extern float data[100][10];
-extern float noOfNormalData, noOfAlteredData;
-extern float normalAgeMean, alteredAgeMean, normalAgeVariance, alteredAgeVariance;
 
-void trainAge(const int trainingStartRow, const int trainingEndRow)
+age trainAge(float **data, metadata meta, const int trainingStartRow, const int trainingEndRow)
 {
     // Calculate mean of normal and altered age
     float sumOfNormalAge = 0, sumOfAlteredAge = 0;
@@ -15,8 +12,8 @@ void trainAge(const int trainingStartRow, const int trainingEndRow)
         else
             sumOfAlteredAge += val;
     }
-    normalAgeMean = sumOfNormalAge / noOfNormalData;
-    alteredAgeMean = sumOfAlteredAge / noOfAlteredData;
+    float normalAgeMean = sumOfNormalAge / meta.numOfNormalData;
+    float alteredAgeMean = sumOfAlteredAge / meta.numOfAlteredData;
 
     // calculate variance of normal and altered age
     float sumOfNormalAgeVariance = 0, sumOfAlteredAgeVariance = 0;
@@ -29,9 +26,8 @@ void trainAge(const int trainingStartRow, const int trainingEndRow)
         else
             sumOfAlteredAgeVariance += pow((val - alteredAgeMean), 2);
     }
-    normalAgeVariance = sumOfNormalAgeVariance / (noOfNormalData - 1);
-    alteredAgeVariance = sumOfAlteredAgeVariance / (noOfAlteredData - 1);
-    // printf("2. Age : %f %f %f %f\n",
-    //        normalAgeMean, alteredAgeMean,
-    //        normalAgeVariance, alteredAgeVariance);
+    float normalAgeVariance = sumOfNormalAgeVariance / (meta.numOfNormalData - 1);
+    float alteredAgeVariance = sumOfAlteredAgeVariance / (meta.numOfAlteredData - 1);
+    age result = {normalAgeMean, alteredAgeMean, normalAgeVariance, alteredAgeVariance};
+    return result;
 }

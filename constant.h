@@ -2,6 +2,8 @@
 #define ALTERED 1.0f    // Value of altered result
 #define RESULT_COLUMN 9 // Result column number in 2D array
 #define ALPHA 1.0f      // Set all value to be min of 1
+#define ROW 100
+#define COLUMN 10
 
 // Season data representation
 #define WINTER -1

@@ -1,32 +1,28 @@
-extern float drinkServeralADayNormal, drinkADayNormal, drinkServeralAWeekNormal,
-    drinkAWeekNormal, drinkHardlyNormal, drinkServeralADayAltered, drinkADayAltered,
-    drinkServeralAWeekAltered, drinkAWeekAltered, drinkHardlyAltered;
-
-void testAlcoholConsumption(float alcohol, float *normalResult, float *alteredResult)
+void testAlcoholConsumption(float value, alcohol probs, float *normalResult, float *alteredResult)
 {
-    if (alcohol == DRINK_SERVERAL_A_DAY)
+    if (value == DRINK_SERVERAL_A_DAY)
     {
-        *normalResult *= drinkServeralADayNormal;
-        *alteredResult *= drinkServeralADayAltered;
+        *normalResult *= probs.drinkServeralADayNormal;
+        *alteredResult *= probs.drinkServeralADayAltered;
     }
-    else if (alcohol == DRINK_EVERY_DAY)
+    else if (value == DRINK_EVERY_DAY)
     {
-        *normalResult *= drinkADayNormal;
-        *alteredResult *= drinkADayAltered;
+        *normalResult *= probs.drinkADayNormal;
+        *alteredResult *= probs.drinkADayAltered;
     }
-    else if (alcohol == DRINK_SERVERAL_A_WEEK)
+    else if (value == DRINK_SERVERAL_A_WEEK)
     {
-        *normalResult *= drinkServeralAWeekNormal;
-        *alteredResult *= drinkServeralAWeekAltered;
+        *normalResult *= probs.drinkServeralAWeekNormal;
+        *alteredResult *= probs.drinkServeralAWeekAltered;
     }
-    else if (alcohol == DRINK_EVERY_WEEK)
+    else if (value == DRINK_EVERY_WEEK)
     {
-        *normalResult *= drinkAWeekNormal;
-        *alteredResult *= drinkAWeekAltered;
+        *normalResult *= probs.drinkAWeekNormal;
+        *alteredResult *= probs.drinkAWeekAltered;
     }
-    else if (alcohol == HARDLY_DRINK)
+    else if (value == HARDLY_DRINK)
     {
-        *normalResult *= drinkHardlyNormal;
-        *alteredResult *= drinkHardlyAltered;
+        *normalResult *= probs.drinkHardlyNormal;
+        *alteredResult *= probs.drinkHardlyAltered;
     }
 }

@@ -1,16 +1,13 @@
-extern float haveChildDiseaseNormal, noChildDiseaseNormal, haveChildDiseaseAltered,
-    noChildDiseaseAltered;
-
-void testChildishDisease(float childDisease, float *normalResult, float *alteredResult)
+void testChildishDisease(float childDisease, disease probs, float *normalResult, float *alteredResult)
 {
     if (childDisease == HAVE_CHILD_DISEASE)
     {
-        *normalResult *= haveChildDiseaseNormal;
-        *alteredResult *= haveChildDiseaseAltered;
+        *normalResult *= probs.haveChildDiseaseNormal;
+        *alteredResult *= probs.haveChildDiseaseAltered;
     }
     else if (childDisease == NO_CHILD_DISEASE)
     {
-        *normalResult *= noChildDiseaseNormal;
-        *alteredResult *= noChildDiseaseAltered;
+        *normalResult *= probs.noChildDiseaseNormal;
+        *alteredResult *= probs.noChildDiseaseAltered;
     }
 }

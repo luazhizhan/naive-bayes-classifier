@@ -8,7 +8,8 @@
 #include "testing/smokingHabit.c"
 #include "testing/sitting.c"
 
-void testing(const int testingStartRow, const int testingEndRow)
+float testing(float **data, trainingResults trainResult,
+              const int testingStartRow, const int testingEndRow)
 {
     float totalNumOfErrors = 0, totalNumOfTests = testingEndRow - testingStartRow,
           falseNegative = 0, falsePositive = 0,
@@ -17,7 +18,8 @@ void testing(const int testingStartRow, const int testingEndRow)
     for (int i = testingStartRow; i < testingEndRow; i++)
     {
         // Result for normal and altered probability based on test
-        float normalResult = normalPriorProb, alteredResult = alteredPriorProb;
+        float normalResult = trainResult.metadata.normalPriorProb,
+              alteredResult = trainResult.metadata.alteredPriorProb;
 
         float seasonValue = data[i][0], ageValue = data[i][1], childDisease = data[i][2],
               traumaValue = data[i][3], surgeryValue = data[i][4], feverValue = data[i][5],
@@ -26,15 +28,15 @@ void testing(const int testingStartRow, const int testingEndRow)
 
         // Calculate probability of Y = Normal OR Y = Altered
         // with 9 different features
-        testSeason(seasonValue, &normalResult, &alteredResult);
-        testAge(ageValue, &normalResult, &alteredResult);
-        testChildishDisease(childDisease, &normalResult, &alteredResult);
-        testTrauma(traumaValue, &normalResult, &alteredResult);
-        testSurgery(surgeryValue, &normalResult, &alteredResult);
-        testHighFever(feverValue, &normalResult, &alteredResult);
-        testAlcoholConsumption(alcohol, &normalResult, &alteredResult);
-        testSmokingHabit(smoking, &normalResult, &alteredResult);
-        testSitting(sitHrs, &normalResult, &alteredResult);
+        testSeason(seasonValue, trainResult.season, &normalResult, &alteredResult);
+        testAge(ageValue, trainResult.age, &normalResult, &alteredResult);
+        testChildishDisease(childDisease, trainResult.disease, &normalResult, &alteredResult);
+        testTrauma(traumaValue, trainResult.trauma, &normalResult, &alteredResult);
+        testSurgery(surgeryValue, trainResult.surgery, &normalResult, &alteredResult);
+        testHighFever(feverValue, trainResult.highFever, &normalResult, &alteredResult);
+        testAlcoholConsumption(alcohol, trainResult.alcohol, &normalResult, &alteredResult);
+        testSmokingHabit(smoking, trainResult.smoking, &normalResult, &alteredResult);
+        testSitting(sitHrs, trainResult.sitting, &normalResult, &alteredResult);
 
         // Y = Normal
         if (normalResult > alteredResult)
@@ -66,4 +68,5 @@ void testing(const int testingStartRow, const int testingEndRow)
     printf("Confusion Matrix table values: \n");
     printf("True Positive = %.0f\nTrue Negative = %.0f\n", truePositive, trueNegative);
     printf("False Positive = %.0f\nFalse Negative = %.0f\n", falsePositive, falseNegative);
+    return probOfError;
 }

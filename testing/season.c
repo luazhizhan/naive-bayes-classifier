@@ -1,26 +1,25 @@
-extern float winterNormal, springNormal, summerNormal, fallNormal, winterAltered,
-    springAltered, summerAltered, fallAltered;
 
-void testSeason(float seasonValue, float *normalResult, float *alteredResult)
+void testSeason(float seasonValue, season probs,
+                float *normalResult, float *alteredResult)
 {
     if (seasonValue == WINTER)
     {
-        *normalResult *= winterNormal;
-        *alteredResult *= winterAltered;
+        *normalResult *= probs.winterNormal;
+        *alteredResult *= probs.winterAltered;
     }
     else if (seasonValue == SPRING)
     {
-        *normalResult *= springNormal;
-        *alteredResult *= springAltered;
+        *normalResult *= probs.springNormal;
+        *alteredResult *= probs.springAltered;
     }
     else if (seasonValue == SUMMER)
     {
-        *normalResult *= summerNormal;
-        *alteredResult *= summerAltered;
+        *normalResult *= probs.summerNormal;
+        *alteredResult *= probs.summerAltered;
     }
     else if (seasonValue == FALL)
     {
-        *normalResult *= fallNormal;
-        *alteredResult *= fallAltered;
+        *normalResult *= probs.fallNormal;
+        *alteredResult *= probs.fallAltered;
     }
 }

@@ -1,3 +1,4 @@
+
 #include "training/season.c"
 #include "training/age.c"
 #include "training/childishDisease.c"
@@ -8,34 +9,40 @@
 #include "training/smokingHabit.c"
 #include "training/sitting.c"
 
-extern float data[100][10];
-extern float noOfNormalData, noOfAlteredData;
-extern float normalPriorProb, alteredPriorProb;
-
-void training(const int trainingStartRow, const int trainingEndRow)
+trainingResults training(float **data, const int start, const int end)
 {
     // Reset and calculate the number of normal and altered data
-    noOfNormalData = 0, noOfAlteredData = 0;
-    for (int i = trainingStartRow; i < trainingEndRow; i++)
+    float numOfNormalData = 0, numOfAlteredData = 0;
+    for (int i = start; i < end; i++)
     {
         if (data[i][RESULT_COLUMN] == NORMAL)
-            noOfNormalData++;
+            numOfNormalData++;
         else
-            noOfAlteredData++;
+            numOfAlteredData++;
     }
     // Caculate normal and altered prior probability
-    int totalNumOfData = trainingEndRow - trainingStartRow;
-    normalPriorProb = noOfNormalData / totalNumOfData;
-    alteredPriorProb = noOfAlteredData / totalNumOfData;
+    int totalNumOfData = end - start;
+    float normalPriorProb = numOfNormalData / totalNumOfData;
+    float alteredPriorProb = numOfAlteredData / totalNumOfData;
+
+    metadata meta = {numOfNormalData, numOfAlteredData,
+                     normalPriorProb, alteredPriorProb};
 
     // Train with 9 different features
-    trainSeason(trainingStartRow, trainingEndRow);
-    trainAge(trainingStartRow, trainingEndRow);
-    trainChildishDisease(trainingStartRow, trainingEndRow);
-    trainTrauma(trainingStartRow, trainingEndRow);
-    trainSurgery(trainingStartRow, trainingEndRow);
-    trainHighFever(trainingStartRow, trainingEndRow);
-    trainAlcoholConsumption(trainingStartRow, trainingEndRow);
-    trainSmokingHabit(trainingStartRow, trainingEndRow);
-    trainSitting(trainingStartRow, trainingEndRow);
+    season seasonProbs = trainSeason(data, meta, start, end);
+    age ageProbs = trainAge(data, meta, start, end);
+    disease diseaseProbs = trainChildishDisease(data, meta, start, end);
+    trauma traumaProbs = trainTrauma(data, meta, start, end);
+    surgery surgeryProbs = trainSurgery(data, meta, start, end);
+    highFever highFeverProbs = trainHighFever(data, meta, start, end);
+    alcohol alcoholProbs = trainAlcoholConsumption(data, meta, start, end);
+    smoking smokingProbs = trainSmokingHabit(data, meta, start, end);
+    sitting sittingProbs = trainSitting(data, meta, start, end);
+
+    trainingResults result = {
+        meta, seasonProbs, ageProbs, diseaseProbs,
+        traumaProbs, surgeryProbs, highFeverProbs, alcoholProbs,
+        smokingProbs, sittingProbs};
+
+    return result;
 }

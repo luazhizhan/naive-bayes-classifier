@@ -1,21 +1,18 @@
-extern float neverSmokeNormal, occasionSmokeNormal, dailySmokeNormal,
-    neverSmokeAltered, occasionSmokeAltered, dailySmokeAltered;
-
-void testSmokingHabit(float smoking, float *normalResult, float *alteredResult)
+void testSmokingHabit(float value, smoking probs, float *normalResult, float *alteredResult)
 {
-    if (smoking == NEVER_SMOKE)
+    if (value == NEVER_SMOKE)
     {
-        *normalResult *= neverSmokeNormal;
-        *alteredResult *= neverSmokeAltered;
+        *normalResult *= probs.neverSmokeNormal;
+        *alteredResult *= probs.neverSmokeAltered;
     }
-    else if (smoking == OCCASIONAL_SMOKE)
+    else if (value == OCCASIONAL_SMOKE)
     {
-        *normalResult *= occasionSmokeNormal;
-        *alteredResult *= occasionSmokeAltered;
+        *normalResult *= probs.occasionSmokeNormal;
+        *alteredResult *= probs.occasionSmokeAltered;
     }
-    else if (smoking == DAILY_SMOKE)
+    else if (value == DAILY_SMOKE)
     {
-        *normalResult *= dailySmokeNormal;
-        *alteredResult *= dailySmokeAltered;
+        *normalResult *= probs.dailySmokeNormal;
+        *alteredResult *= probs.dailySmokeAltered;
     }
 }
