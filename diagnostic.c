@@ -22,7 +22,7 @@ void diagnostic(trainingResults trainResult)
     testSitting(sitting, trainResult.sitting, &normalResult, &alteredResult);
 
     if (normalResult > alteredResult)
-        printf("Normal\n");
+        printf("Result = Normal\n\n");
     else
-        printf("Altered\n");
+        printf("Result = Altered\n\n");
 }

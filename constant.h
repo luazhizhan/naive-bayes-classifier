@@ -5,6 +5,13 @@
 #define ROW 100
 #define COLUMN 10
 
+// Number and size of training sets
+#define NUM_OF_SETS 4
+#define TRAINING_SIZE_1 90
+#define TRAINING_SIZE_2 80
+#define TRAINING_SIZE_3 50
+#define TRAINING_SIZE_4 30
+
 // Season data representation
 #define WINTER -1
 #define SPRING -0.33
