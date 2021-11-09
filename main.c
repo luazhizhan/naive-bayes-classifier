@@ -93,7 +93,6 @@ int main()
 
 float **readFile()
 {
-    // Read data from file
     FILE *fptr;
     fptr = fopen("data.txt", "r");
     if (fptr == NULL)
@@ -102,29 +101,17 @@ float **readFile()
         exit(1);
     }
 
-    int row = 0;
-    char line[50];
     float **data = malloc(ROW * sizeof(float *));
-
-    while (fgets(line, sizeof(line), fptr))
+    for (int i = 0; i < ROW; i++)
     {
-        // split line data using "," as delimiter
-        char *token = strtok(line, ",");
-        int col = 0;
-        data[row] = malloc(COLUMN * sizeof(float));
-
-        while (token != NULL)
-        {
-            // convert char pointer to float
-            // store the value to 2d array
-            // increment column number
-            data[row][col++] = atof(token);
-
-            // continue splitting the next line data using "," as delimiter
-            token = strtok(NULL, ",");
-        }
-        row++;
+        data[i] = malloc(COLUMN * sizeof(float));
+        fscanf(fptr, "%f,%f,%f,%f,%f,%f,%f,%f,%f,%f",
+               &data[i][0], &data[i][1], &data[i][2],
+               &data[i][3], &data[i][4], &data[i][5],
+               &data[i][6], &data[i][7], &data[i][8],
+               &data[i][9]);
     }
+
     // close the file
     fclose(fptr);
     return data;

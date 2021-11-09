@@ -24,13 +24,13 @@ trauma trainTrauma(float **data, metadata meta,
     }
     // Add 2 as there are 2 different answers (yes,no) for normal and altered data
     // due to ALPHA being set to 1
-    float noOfNormalDataAlpha = meta.numOfNormalData + 2;
-    float noOfAlteredDataAlpha = meta.numOfAlteredData + 2;
+    float numOfNormalData = meta.numOfNormalData + 2;
+    float numOfAlteredData = meta.numOfAlteredData + 2;
 
-    float haveTraumaNormal = noOfHaveTraumaNormal / noOfNormalDataAlpha;
-    float noTraumaNormal = noOfNoTraumaNormal / noOfNormalDataAlpha;
-    float haveTraumaAltered = noOfHaveTraumaAltered / noOfAlteredDataAlpha;
-    float noTraumaAltered = noOfNoTraumaAltered / noOfAlteredDataAlpha;
+    float haveTraumaNormal = noOfHaveTraumaNormal / numOfNormalData;
+    float noTraumaNormal = noOfNoTraumaNormal / numOfNormalData;
+    float haveTraumaAltered = noOfHaveTraumaAltered / numOfAlteredData;
+    float noTraumaAltered = noOfNoTraumaAltered / numOfAlteredData;
 
     trauma result = {haveTraumaNormal,
                      noTraumaNormal,
