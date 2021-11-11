@@ -5,8 +5,8 @@
 #include <math.h>
 #include <time.h>
 #include "constant.h" // Defined constant
-#include "type.h"
-#include "training.c" // Training codes
+#include "type.h"     // Feature type definitions
+#include "training.c"
 #include "testing.c"
 #include "diagnostic.c"
 
