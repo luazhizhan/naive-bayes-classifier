@@ -28,7 +28,14 @@ float testing(float data[ROW][COLUMN], trainingResults trainResult,
 
         // Calculate probability of Y = Normal OR Y = Altered
         // with 9 different features
+        testSeason(seasonValue, trainResult.season, &normalResult, &alteredResult);
         testAge(ageValue, trainResult.age, &normalResult, &alteredResult);
+        testChildishDisease(childDisease, trainResult.disease, &normalResult, &alteredResult);
+        testTrauma(traumaValue, trainResult.trauma, &normalResult, &alteredResult);
+        testSurgery(surgeryValue, trainResult.surgery, &normalResult, &alteredResult);
+        testHighFever(feverValue, trainResult.highFever, &normalResult, &alteredResult);
+        testAlcoholConsumption(alcohol, trainResult.alcohol, &normalResult, &alteredResult);
+        testSmokingHabit(smoking, trainResult.smoking, &normalResult, &alteredResult);
         testSitting(sitHrs, trainResult.sitting, &normalResult, &alteredResult);
 
         // Data for probability of error and confusion matrix
