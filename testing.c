@@ -70,3 +70,10 @@ float testing(float data[ROW][COLUMN], trainingResults trainResult,
     printf("False Positive = %.0f\nFalse Negative = %.0f\n", falsePositive, falseNegative);
     return probOfError;
 }
+
+// Gaussain distribution using variance formula
+float gaussianDistribution(float value, float variance, float mean)
+{
+    float fx = 1 / sqrt(2 * M_PI) * exp(-0.5 * pow((value - mean), 2) / variance);
+    return fx;
+}

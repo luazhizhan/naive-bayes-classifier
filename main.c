@@ -6,7 +6,6 @@
 #include <time.h>
 #include "constant.h" // Defined constant
 #include "type.h"
-#include "helper.c"
 #include "training.c" // Training codes
 #include "testing.c"
 #include "diagnostic.c"
