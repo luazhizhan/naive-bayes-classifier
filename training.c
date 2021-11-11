@@ -9,7 +9,7 @@
 #include "training/smokingHabit.c"
 #include "training/sitting.c"
 
-trainingResults training(float **data, const int start, const int end)
+trainingResults training(float data[ROW][COLUMN], const int start, const int end)
 {
     // Reset and calculate the number of normal and altered data
     float numOfNormalData = 0, numOfAlteredData = 0;

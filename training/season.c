@@ -1,5 +1,5 @@
 
-season trainSeason(float **data, metadata meta, const int start, const int end)
+season trainSeason(float data[ROW][COLUMN], metadata meta, const int start, const int end)
 {
     // number of rows that are NORMAL(N) or altered(A) by season
     float noOfWinterNormal = ALPHA, noOfSpringNormal = ALPHA, noOfSummerNormal = ALPHA,

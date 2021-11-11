@@ -1,5 +1,5 @@
 
-age trainAge(float **data, metadata meta, const int trainingStartRow, const int trainingEndRow)
+age trainAge(float data[ROW][COLUMN], metadata meta, const int trainingStartRow, const int trainingEndRow)
 {
     // Calculate mean of normal and altered age
     float sumOfNormalAge = 0, sumOfAlteredAge = 0;

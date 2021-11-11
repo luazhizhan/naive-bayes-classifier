@@ -8,7 +8,7 @@
 #include "testing/smokingHabit.c"
 #include "testing/sitting.c"
 
-float testing(float **data, trainingResults trainResult,
+float testing(float data[ROW][COLUMN], trainingResults trainResult,
               const int testingStartRow, const int testingEndRow)
 {
     float totalNumOfErrors = 0, totalNumOfTests = testingEndRow - testingStartRow,

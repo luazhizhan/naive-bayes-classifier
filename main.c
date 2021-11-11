@@ -11,7 +11,7 @@
 #include "testing.c"
 #include "diagnostic.c"
 
-float **readFile();
+void readFile(float data[ROW][COLUMN]);
 int main()
 {
     // Time the program
@@ -19,7 +19,8 @@ int main()
     timer = clock();
 
     // Read data file
-    float **data = readFile();
+    float data[ROW][COLUMN];
+    readFile(data);
 
     printf("\n\n1) Training Set (First 90), Testing Set (Last 10)\n");
     const int trainingStartRow1 = 0, trainingEndRow1 = TRAINING_SIZE_1,
@@ -91,7 +92,7 @@ int main()
     return 0;
 }
 
-float **readFile()
+void readFile(float data[ROW][COLUMN])
 {
     FILE *fptr;
     fptr = fopen("data.txt", "r");
@@ -101,10 +102,8 @@ float **readFile()
         exit(1);
     }
 
-    float **data = malloc(ROW * sizeof(float *));
     for (int i = 0; i < ROW; i++)
     {
-        data[i] = malloc(COLUMN * sizeof(float));
         fscanf(fptr, "%f,%f,%f,%f,%f,%f,%f,%f,%f,%f",
                &data[i][0], &data[i][1], &data[i][2],
                &data[i][3], &data[i][4], &data[i][5],
@@ -114,5 +113,4 @@ float **readFile()
 
     // close the file
     fclose(fptr);
-    return data;
 }

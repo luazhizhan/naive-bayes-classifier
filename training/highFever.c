@@ -1,4 +1,4 @@
-highFever trainHighFever(float **data, metadata meta,
+highFever trainHighFever(float data[ROW][COLUMN], metadata meta,
                          const int trainingStartRow, const int trainingEndRow)
 {
     float noOfHaveFeverLess3MthsNormal = ALPHA, noOfHaveFeverMore3MthsNormal = ALPHA,
