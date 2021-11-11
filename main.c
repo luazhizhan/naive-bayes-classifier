@@ -23,25 +23,25 @@ int main()
 
     printf("\n\n1) Training Set (First 90), Testing Set (Last 10)\n");
     const int trainingStartRow1 = 0, trainingEndRow1 = TRAINING_SIZE_1,
-              testingStartRow1 = TRAINING_SIZE_1, testingEndRow1 = 100;
+              testingStartRow1 = TRAINING_SIZE_1, testingEndRow1 = ROW;
     trainingResults result1 = training(data, trainingStartRow1, trainingEndRow1);
     float error1 = testing(data, result1, testingStartRow1, testingEndRow1);
 
     printf("\n\n2) Training Set (First 80), Testing Set (Last 20)\n");
     const int trainingStartRow2 = 0, trainingEndRow2 = TRAINING_SIZE_2,
-              testingStartRow2 = TRAINING_SIZE_2, testingEndRow2 = 100;
+              testingStartRow2 = TRAINING_SIZE_2, testingEndRow2 = ROW;
     trainingResults result2 = training(data, trainingStartRow2, trainingEndRow2);
     float error2 = testing(data, result2, testingStartRow2, testingEndRow2);
 
     printf("\n\n3) Training Set (First 50), Testing Set (Last 50)\n");
     const int trainingStartRow3 = 0, trainingEndRow3 = TRAINING_SIZE_3,
-              testingStartRow3 = TRAINING_SIZE_3, testingEndRow3 = 100;
+              testingStartRow3 = TRAINING_SIZE_3, testingEndRow3 = ROW;
     trainingResults result3 = training(data, trainingStartRow3, trainingEndRow3);
     float error3 = testing(data, result3, testingStartRow3, testingEndRow3);
 
     printf("\n\n3) Training Set (First 30), Testing Set (Last 70)\n");
     const int trainingStartRow4 = 0, trainingEndRow4 = TRAINING_SIZE_4,
-              testingStartRow4 = TRAINING_SIZE_4, testingEndRow4 = 100;
+              testingStartRow4 = TRAINING_SIZE_4, testingEndRow4 = ROW;
     trainingResults result4 = training(data, trainingStartRow4, trainingEndRow4);
     float error4 = testing(data, result4, testingStartRow4, testingEndRow4);
 
