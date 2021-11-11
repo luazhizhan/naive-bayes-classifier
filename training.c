@@ -29,10 +29,20 @@ trainingResults training(float data[ROW][COLUMN], const int start, const int end
                      normalPriorProb, alteredPriorProb};
 
     // Train with 9 different features
+    season seasonProbs = trainSeason(data, meta, start, end);
     age ageProbs = trainAge(data, meta, start, end);
+    disease diseaseProbs = trainChildishDisease(data, meta, start, end);
+    trauma traumaProbs = trainTrauma(data, meta, start, end);
+    surgery surgeryProbs = trainSurgery(data, meta, start, end);
+    highFever highFeverProbs = trainHighFever(data, meta, start, end);
+    alcohol alcoholProbs = trainAlcoholConsumption(data, meta, start, end);
+    smoking smokingProbs = trainSmokingHabit(data, meta, start, end);
     sitting sittingProbs = trainSitting(data, meta, start, end);
 
-    trainingResults result = {meta, ageProbs, sittingProbs};
+    trainingResults result = {
+        meta, seasonProbs, ageProbs, diseaseProbs,
+        traumaProbs, surgeryProbs, highFeverProbs, alcoholProbs,
+        smokingProbs, sittingProbs};
 
     return result;
 }
