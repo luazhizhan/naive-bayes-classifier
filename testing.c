@@ -28,17 +28,10 @@ float testing(float **data, trainingResults trainResult,
 
         // Calculate probability of Y = Normal OR Y = Altered
         // with 9 different features
-        testSeason(seasonValue, trainResult.season, &normalResult, &alteredResult);
         testAge(ageValue, trainResult.age, &normalResult, &alteredResult);
-        testChildishDisease(childDisease, trainResult.disease, &normalResult, &alteredResult);
-        testTrauma(traumaValue, trainResult.trauma, &normalResult, &alteredResult);
-        testSurgery(surgeryValue, trainResult.surgery, &normalResult, &alteredResult);
-        testHighFever(feverValue, trainResult.highFever, &normalResult, &alteredResult);
-        testAlcoholConsumption(alcohol, trainResult.alcohol, &normalResult, &alteredResult);
-        testSmokingHabit(smoking, trainResult.smoking, &normalResult, &alteredResult);
         testSitting(sitHrs, trainResult.sitting, &normalResult, &alteredResult);
 
-        // Y = Normal
+        // Data for probability of error and confusion matrix
         if (normalResult > alteredResult)
         {
             if (result == NORMAL)
@@ -63,10 +56,10 @@ float testing(float **data, trainingResults trainResult,
             }
         }
     }
-    float probOfError = totalNumOfErrors / totalNumOfTests;
-    printf("Probability of error = %f\n", probOfError);
-    printf("Confusion Matrix table values: \n");
-    printf("True Positive = %.0f\nTrue Negative = %.0f\n", truePositive, trueNegative);
-    printf("False Positive = %.0f\nFalse Negative = %.0f\n", falsePositive, falseNegative);
+    // Probability of error formula here
+    float probOfError = 0;
+
+    // Print confusion matrix data
+
     return probOfError;
 }

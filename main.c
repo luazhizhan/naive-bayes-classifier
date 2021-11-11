@@ -51,22 +51,6 @@ int main()
     printf("\nTime taken to complete entire program = %.1f milliseconds\n\n", timerTimeTaken * 1000);
 
     // Probability of error graph using gnuplot
-    int plotX[] = {TRAINING_SIZE_1, TRAINING_SIZE_2, TRAINING_SIZE_3, TRAINING_SIZE_4};
-    float plotY[] = {error1, error2, error3, error4};
-    FILE *gnuplot = popen("gnuplot -p", "w");
-    if (!gnuplot)
-    {
-        perror("popen");
-        exit(EXIT_FAILURE);
-    }
-    fputs("set xlabel 'Training Size' \n", gnuplot);
-    fputs("set ylabel 'Error Rate' \n", gnuplot);
-    fputs("set title 'Probability Of Errors' \n", gnuplot);
-    fprintf(gnuplot, "plot '-' t 'Error' w lp pt 5\n");
-    for (int numOfSet = 0; numOfSet < NUM_OF_SETS; numOfSet++)
-        fprintf(gnuplot, "%d %f\n", plotX[numOfSet], plotY[numOfSet]);
-    fprintf(gnuplot, "e\n");
-    pclose(gnuplot);
 
     // Diagnostic program
     int diagnosticNum = 1;
@@ -93,26 +77,6 @@ int main()
 
 float **readFile()
 {
-    FILE *fptr;
-    fptr = fopen("data.txt", "r");
-    if (fptr == NULL)
-    {
-        printf("data.txt not found.\n");
-        exit(1);
-    }
-
     float **data = malloc(ROW * sizeof(float *));
-    for (int i = 0; i < ROW; i++)
-    {
-        data[i] = malloc(COLUMN * sizeof(float));
-        fscanf(fptr, "%f,%f,%f,%f,%f,%f,%f,%f,%f,%f",
-               &data[i][0], &data[i][1], &data[i][2],
-               &data[i][3], &data[i][4], &data[i][5],
-               &data[i][6], &data[i][7], &data[i][8],
-               &data[i][9]);
-    }
-
-    // close the file
-    fclose(fptr);
     return data;
 }
