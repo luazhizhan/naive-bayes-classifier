@@ -11,7 +11,7 @@
 #include "testing.c"
 #include "diagnostic.c"
 
-float **readFile();
+void readFile(float data[ROW][COLUMN]);
 int main()
 {
     // Time the program
@@ -19,7 +19,8 @@ int main()
     timer = clock();
 
     // Read data file
-    float **data = readFile();
+    float data[ROW][COLUMN];
+    readFile(data);
 
     printf("\n\n1) Training Set (First 90), Testing Set (Last 10)\n");
     const int trainingStartRow1 = 0, trainingEndRow1 = TRAINING_SIZE_1,
@@ -75,8 +76,6 @@ int main()
     return 0;
 }
 
-float **readFile()
+void readFile(float data[ROW][COLUMN])
 {
-    float **data = malloc(ROW * sizeof(float *));
-    return data;
 }

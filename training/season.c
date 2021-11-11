@@ -1,4 +1,4 @@
 
-season trainSeason(float **data, metadata meta, const int start, const int end)
+season trainSeason(float data[ROW][COLUMN], metadata meta, const int start, const int end)
 {
 }

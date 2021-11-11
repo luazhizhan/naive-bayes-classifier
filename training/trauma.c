@@ -1,4 +1,4 @@
-trauma trainTrauma(float **data, metadata meta,
+trauma trainTrauma(float data[ROW][COLUMN], metadata meta,
                    const int trainingStartRow, const int trainingEndRow)
 {
 }

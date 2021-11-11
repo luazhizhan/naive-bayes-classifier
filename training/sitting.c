@@ -1,4 +1,4 @@
-sitting trainSitting(float **data, metadata meta,
+sitting trainSitting(float data[ROW][COLUMN], metadata meta,
                      const int trainingStartRow, const int trainingEndRow)
 {
     float sumOfNormalHrs = 0, sumOfAlteredHrs = 0;
