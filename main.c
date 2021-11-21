@@ -91,25 +91,28 @@ int main()
     return 0;
 }
 
+/*Function used to open the dataset file & extract the features*/
 void readFile(float data[ROW][COLUMN])
 {
-    FILE *fptr;
-    fptr = fopen("data.txt", "r");
-    if (fptr == NULL)
+    /*pointer variable of fp (file pointer) pointing to FILE structure*/
+    FILE *fp;
+
+    /*opening the file with read privileges*/
+    fp = fopen("data.txt", "r");
+
+    /*if file poniter doesn't exists, exit and print message file could not be opened*/
+    if (fp == NULL)
     {
-        printf("data.txt not found.\n");
+        printf("File could not be opened \n");
         exit(1);
     }
 
-    for (int i = 0; i < ROW; i++)
+    /*ROW is defined as 100 under constant.h*/
+    for (int i = 0; i <= ROW; i++)
     {
-        fscanf(fptr, "%f,%f,%f,%f,%f,%f,%f,%f,%f,%f",
-               &data[i][0], &data[i][1], &data[i][2],
-               &data[i][3], &data[i][4], &data[i][5],
-               &data[i][6], &data[i][7], &data[i][8],
-               &data[i][9]);
+        /*file is scanned into array for each feature, the count of rows will stop when it reaches 100*/
+        fscanf(fp, "%f, %f, %f ,%f, %f, %f, %f ,%f, %f, %f", &data[i][0], &data[i][1], &data[i][2],
+               &data[i][3], &data[i][4], &data[i][5], &data[i][6], &data[i][7], &data[i][8], &data[i][9]);
     }
-
-    // close the file
-    fclose(fptr);
+    fclose(fp);
 }
