@@ -63,11 +63,28 @@ float testing(float data[ROW][COLUMN], trainingResults trainResult,
             }
         }
     }
+
+    // Check how accurate the classifier is, how many values we predicted correctly
+    float accuracy = (truePositive + trueNegative) / totalNumOfTests;
+
+    // Misclassification Rate / Error Rate : how often the prediction is wrong?
+    // alternative solution -> float errorRate = 1 - accuracy;
     float probOfError = totalNumOfErrors / totalNumOfTests;
-    printf("Probability of error = %f\n", probOfError);
+
+    // Precision : calculates how many times a prediciton is correct out of total prediction
+    float precisionPositive = truePositive / (truePositive + falsePositive);
+    float precisionNegative = trueNegative / (trueNegative + falseNegative);
+
+    printf("Total predictions by the classifier: %.0f\n", totalNumOfTests);
+    printf("Accuracy of the classifier: %.2f\n", accuracy);
+    printf("Probability of error = %.2f\n", probOfError);
+    printf("Positive precision of the classifier: %.2f\n", isnan(precisionPositive) ? 0 : precisionPositive);
+    printf("Negative precision of the classifier: %.2f\n", isnan(precisionNegative) ? 0 : precisionNegative);
+
     printf("Confusion Matrix table values: \n");
     printf("True Positive = %.0f\nTrue Negative = %.0f\n", truePositive, trueNegative);
     printf("False Positive = %.0f\nFalse Negative = %.0f\n", falsePositive, falseNegative);
+
     return probOfError;
 }
 

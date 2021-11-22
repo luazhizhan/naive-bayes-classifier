@@ -1,34 +1,47 @@
 highFever trainHighFever(float data[ROW][COLUMN], metadata meta,
                          const int trainingStartRow, const int trainingEndRow)
 {
-    float noOfHaveFeverLess3MthsNormal = ALPHA, noOfHaveFeverMore3MthsNormal = ALPHA,
-          noOfNoFeverNormal = ALPHA, noOfHaveFeverLess3MthsAltered = ALPHA,
-          noOfHaveFeverMore3MthsAltered = ALPHA, noOfNoFeverAltered = ALPHA;
+    float sumOfHaveFeverLess3MthsNormal = ALPHA, sumOfHaveFeverMore3MthsNormal = ALPHA,
+          sumOfNoFeverNormal = ALPHA, sumOfHaveFeverLess3MthsAltered = ALPHA,
+          sumOfHaveFeverMore3MthsAltered = ALPHA, sumOfNoFeverAltered = ALPHA;
 
     for (int i = trainingStartRow; i < trainingEndRow; i++)
     {
+        // Retrieve Fever value from data set and store into val array
         float val = data[i][5];
+        // Result (Output) : Semen Diagnosis
         float result = data[i][RESULT_COLUMN];
+
+        // Value of -1, 0 and 1 indicates whether user has Fever less or more than three months ago, or no fever at all [-1 = < 3 mths, 0 = > 3 mths, 1 = no fever]
+        // User had fever less than 3 months ago
         if (val == FEVER_LESS_3_MTHS)
         {
+            // User had fever less than 3 months ago but is normal
             if (result == NORMAL)
-                noOfHaveFeverLess3MthsNormal++;
+                sumOfHaveFeverLess3MthsNormal++;
+            // User had fever less than 3 months ago but is not normal
             else
-                noOfHaveFeverLess3MthsAltered++;
+                sumOfHaveFeverLess3MthsAltered++;
         }
+        // User had fever more than 3 months ago
         else if (val == FEVER_MORE_3_MTHS)
         {
+            // User had fever more than 3 months ago but is normal
             if (result == NORMAL)
-                noOfHaveFeverMore3MthsNormal++;
+                sumOfHaveFeverMore3MthsNormal++;
+            // User had fever more than 3 months ago but is not normal
             else
-                noOfHaveFeverMore3MthsAltered++;
+                sumOfHaveFeverMore3MthsAltered++;
         }
+        // User had no fever the past 3 months
         else if (val == NO_FEVER)
         {
+            // User had no fever but is normal
             if (result == NORMAL)
-                noOfNoFeverNormal++;
+                sumOfNoFeverNormal++;
+            // User had no fever but is not normal
             else
-                noOfNoFeverAltered++;
+                sumOfNoFeverAltered++;
         }
     }
 
@@ -37,12 +50,12 @@ highFever trainHighFever(float data[ROW][COLUMN], metadata meta,
     float noOfNormalDataAlpha = meta.numOfNormalData + 3;
     float noOfAlteredDataAlpha = meta.numOfAlteredData + 3;
 
-    float haveFeverLess3MthsNormal = noOfHaveFeverLess3MthsNormal / noOfNormalDataAlpha;
-    float haveFeverMore3MthsNormal = noOfHaveFeverMore3MthsNormal / noOfNormalDataAlpha;
-    float noFeverNormal = noOfNoFeverNormal / noOfNormalDataAlpha;
-    float haveFeverLess3MthsAltered = noOfHaveFeverLess3MthsAltered / noOfAlteredDataAlpha;
-    float haveFeverMore3MthsAltered = noOfHaveFeverMore3MthsAltered / noOfAlteredDataAlpha;
-    float noFeverAltered = noOfNoFeverAltered / noOfAlteredDataAlpha;
+    float haveFeverLess3MthsNormal = sumOfHaveFeverLess3MthsNormal / noOfNormalDataAlpha;
+    float haveFeverMore3MthsNormal = sumOfHaveFeverMore3MthsNormal / noOfNormalDataAlpha;
+    float noFeverNormal = sumOfNoFeverNormal / noOfNormalDataAlpha;
+    float haveFeverLess3MthsAltered = sumOfHaveFeverLess3MthsAltered / noOfAlteredDataAlpha;
+    float haveFeverMore3MthsAltered = sumOfHaveFeverMore3MthsAltered / noOfAlteredDataAlpha;
+    float noFeverAltered = sumOfNoFeverAltered / noOfAlteredDataAlpha;
 
     highFever result = {haveFeverLess3MthsNormal, haveFeverMore3MthsNormal,
                         noFeverNormal, haveFeverLess3MthsAltered,
